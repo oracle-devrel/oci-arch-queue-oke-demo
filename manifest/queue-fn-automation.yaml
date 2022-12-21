@@ -1,0 +1,48 @@
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: ${namespace}
+%{ for queue_ocid, function_ocid in queue_function_map }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: queue-fn-automation-${substr(queue_ocid, -8, -1)}
+  namespace: ${namespace}
+  labels:
+    app: queue-fn-automation-${substr(queue_ocid, -8, -1)}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: queue-fn-automation-${substr(queue_ocid, -8, -1)}
+  template:
+    metadata:
+      labels:
+        app: queue-fn-automation-${substr(queue_ocid, -8, -1)}
+    spec:
+      containers:
+      - name: queue-fn-automation
+        image: ${ocir_repo}/${name}/${image}:${hash}
+        imagePullPolicy: Always
+        livenessProbe:
+          exec:
+            command:
+            - cat
+            - /tmp/healthy
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          failureThreshold: 3
+        env:
+        - name: QUEUE_OCI_REGION
+          value: "${queue_region}"
+        - name: QUEUE_OCID
+          value: "${queue_ocid}"
+        - name: FUNCTION_OCI_REGION
+          value: "${function_region}"
+        - name: FUNCTION_OCID
+          value: "${function_ocid}"          
+      imagePullSecrets:
+      - name: ocir-secret
+%{ endfor ~}

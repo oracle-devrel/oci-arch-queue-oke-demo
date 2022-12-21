@@ -1,20 +1,85 @@
-# oci-arch-queue-oke-demo
+# oci-queue-fn-oke-demo
 
-[![License: UPL](https://img.shields.io/badge/license-UPL-green)](https://img.shields.io/badge/license-UPL-green) [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=oracle-devrel_oci-arch-queue-oke-demo)](https://sonarcloud.io/dashboard?id=oracle-devrel_oci-arch-queue-oke-demo)
+[![License: UPL](https://img.shields.io/badge/license-UPL-green)](https://img.shields.io/badge/license-UPL-green) [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=oracle-devrel_oci-queue-fn-oke-demo)](https://sonarcloud.io/dashboard?id=oracle-devrel_oci-queue-fn-oke-demo)
 
 ## THIS IS A NEW, BLANK REPO THAT IS NOT READY FOR USE YET.  PLEASE CHECK BACK SOON!
 
 ## Introduction
-MISSING
+
+This is an example project that will enable the consumption of queue messages and will POST the messages to an OCI function provided by the user.
+
+Resources created by this deployment are:
+- OCI DevOps project with CI/CD pipelines for queue-fn-automation application deployment.
+- OKE cluster (if required).
+- OCIR repository for the queue-fn-automation container image.
+- OKE deployment for the queue-fn-automation application.
+- Policies to enable queue-fn-automation application interaction with queues and functions (if required).
 
 ## Getting Started
-MISSING
 
 ### Prerequisites
-MISSING
+
+Please ensure required policies are required:
+- DevOps service required policies to containerize an application as part of build stage, deliver container image to OCIR and deploy resources on OKE cluster. (policies can be created by the stack and the deploying user must have administrative priviledges).
+- OKE worker nodes are part of a dynamic group with the proper policies attached to allow interaction of application with queues and functions. (policies can be created by the stack and the deploying user must have administrative priviledges)
+
+#### Create OCI Dynamic Group
+
+To interact with OCI resources: queues & functions, the application will authenticate as instance principal.
+If you are using an **existing OKE cluster** please make sure the required policies are configured.
+
+**Create tag namespace**: authorization
+**Create a tag key**: instance_principal
+
+**Name**: queue_automation_dg
+**match_rule**:
+`All {instance.compartment.id='<kubernetes worker nodes compartment_ocid>',`
+`tag.authorization.instance_principal.value='yes'}`
+
+Add to Kubernetes worker nodes below the defined tag:
+authorization.instance_principal = 'yes'
+
+#### Create OCI policies
+
+ **Name** : queue_automation_policies  
+
+**Policies** : 
+
+`allow dynamic-group queue_automation_dg to use queues in compartment <queue_parent_compartment><br/>allow dynamic-group queue_automation_dg to use fn-invocation in compartment <function_parent_compartment>` 
+
+For explicit access is possible to target queue.id and function.id
+
+**Policies** : 
+
+`allow dynamic-group queue_automation_dg to use queues in compartment <queue_parent_compartment> where target.queue.id='<queue_OCID>'<br/>allow dynamic-group queue_automation_dg to use fn-invocation in compartment <function_parent_compartment> where target.function.id = '<function_OCID>'` 
+
+### Automated deployment
+
+Create a stack in ORM, load the project files,  fill-in all required values and run **apply**.
+
+### Manual deployment
+
+
+#### Build docker image
+
+If is required to manually build the image you can refer to `/application` directory and run below command:
+
+`docker build -f Dockerfile -t <OCIR_container_image_url>` 
+
+#### Push docker image to OCIR
+
+https://docs.oracle.com/en-us/iaas/Content/Registry/Tasks/registrypushingimagesusingthedockercli.htm
+
+docker push <OCIR_container_image_url>
+
+#### OKE deployment 
+
+Update the missing values in `application/queue-automation.yaml` file and run below command:
+
+`kubectl apply -f queue-automation.yaml`
 
 ## Notes/Issues
-MISSING
+* None
 
 ## URLs
 * Nothing at this time

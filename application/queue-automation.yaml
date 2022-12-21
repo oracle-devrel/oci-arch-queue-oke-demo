@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: queue-automation
+  labels:
+    app: queue-automation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: queue-automation
+  template:
+    metadata:
+      labels:
+        app: queue-automation
+    spec:
+      containers:
+      - name: queue-automation
+        image: <OCIR_container_image_url>
+        imagePullPolicy: Always
+        livenessProbe:
+          exec:
+            command:
+            - cat
+            - /tmp/healthy
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          failureThreshold: 3
+        env:
+        - name: QUEUE_OCI_REGION
+          value: "us-ashburn-1"
+        - name: QUEUE_OCID
+          value: "ocid1.queue.oc1.iad....wja"
+        - name: FUNCTION_OCI_REGION
+          value: "eu-frankfurt-1"
+        - name: FUNCTION_OCID
+          value: "ocid1.fnfunc.oc1.eu-frankfurt-1....fjyiuq"          
+      imagePullSecrets:
+      - name: <OCIR_secret_name>

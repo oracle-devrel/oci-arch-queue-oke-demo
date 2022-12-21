@@ -31,3 +31,8 @@ Temporary Items
 .crt
 .csr
 .pem
+.auto.tfvars
+.terraform/
+.terraform.lock.hcl
+.tfstate.backup
+.tfstate
