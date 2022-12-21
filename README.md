@@ -15,11 +15,16 @@ Resources created by this deployment are:
 
 ## Getting Started
 
-### Prerequisites
+### Automated deployment
+
+Create a stack in ORM, load the project files, fill in all required values and click `Apply`.
+
+[![Deploy to OCI](https://docs.oracle.com/en-us/iaas/Content/Resources/Images/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/robo-cap/oci-arch-queue-oke-demo/archive/refs/tags/v1.0.zip)
+
+### Prerequisites - Existing OKE cluster
 
 Please ensure required policies are configured:
 
-- DevOps service required policies to containerize an application as part of the build stage, deliver a container image to OCIR and deploy resources on the OKE cluster. (policies can be created by the stack and the deploying user must have administrative privileges)
 - OKE worker nodes are part of a dynamic group with the proper policies attached to allow the interaction of the application with queues and functions. (policies can be created by the stack and the deploying user must have administrative privileges)
 
 #### Create OCI Dynamic Group
@@ -51,12 +56,6 @@ For explicit access is possible to target queue.id and function.id
 **Policies** : 
 
 `allow dynamic-group queue_automation_dg to use queues in compartment <queue_parent_compartment> where target.queue.id='<queue_OCID>'<br/>allow dynamic-group queue_automation_dg to use fn-invocation in compartment <function_parent_compartment> where target.function.id = '<function_OCID>'` 
-
-### Automated deployment
-
-Create a stack in ORM, load the project files, fill in all required values and click `Apply`.
-
-[![Deploy to OCI](https://docs.oracle.com/en-us/iaas/Content/Resources/Images/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/robo-cap/oci-arch-queue-oke-demo/archive/refs/tags/v1.0.zip)
 
 ### Manual deployment
 
