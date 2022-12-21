@@ -2,8 +2,6 @@
 
 [![License: UPL](https://img.shields.io/badge/license-UPL-green)](https://img.shields.io/badge/license-UPL-green) [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=oracle-devrel_oci-queue-fn-oke-demo)](https://sonarcloud.io/dashboard?id=oracle-devrel_oci-queue-fn-oke-demo)
 
-## THIS IS A NEW, BLANK REPO THAT IS NOT READY FOR USE YET.  PLEASE CHECK BACK SOON!
-
 ## Introduction
 
 This is an example project that will enable the consumption of queue messages and will POST the messages to an OCI function provided by the user.
@@ -19,13 +17,14 @@ Resources created by this deployment are:
 
 ### Prerequisites
 
-Please ensure required policies are required:
-- DevOps service required policies to containerize an application as part of build stage, deliver container image to OCIR and deploy resources on OKE cluster. (policies can be created by the stack and the deploying user must have administrative priviledges).
-- OKE worker nodes are part of a dynamic group with the proper policies attached to allow interaction of application with queues and functions. (policies can be created by the stack and the deploying user must have administrative priviledges)
+Please ensure required policies are configured:
+
+- DevOps service required policies to containerize an application as part of the build stage, deliver a container image to OCIR and deploy resources on the OKE cluster. (policies can be created by the stack and the deploying user must have administrative privileges)
+- OKE worker nodes are part of a dynamic group with the proper policies attached to allow the interaction of the application with queues and functions. (policies can be created by the stack and the deploying user must have administrative privileges)
 
 #### Create OCI Dynamic Group
 
-To interact with OCI resources: queues & functions, the application will authenticate as instance principal.
+To interact with OCI resources: queues & functions, the application will authenticate as a resource principal.
 If you are using an **existing OKE cluster** please make sure the required policies are configured.
 
 **Create tag namespace**: authorization
@@ -55,16 +54,17 @@ For explicit access is possible to target queue.id and function.id
 
 ### Automated deployment
 
-Create a stack in ORM, load the project files,  fill-in all required values and run **apply**.
+Create a stack in ORM, load the project files, fill in all required values and click `Apply`.
 
 [![Deploy to OCI](https://docs.oracle.com/en-us/iaas/Content/Resources/Images/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/robo-cap/oci-arch-queue-oke-demo/archive/refs/tags/v1.0.zip)
 
 ### Manual deployment
 
+If you intend to manually deploy the application to an existing OKE cluster please follow the below steps.
 
 #### Build docker image
 
-If is required to manually build the image you can refer to `/application` directory and run below command:
+To build the container image you can refer to `/application` directory and run the below command:
 
 `docker build -f Dockerfile -t <OCIR_container_image_url>` 
 
@@ -76,7 +76,7 @@ https://docs.oracle.com/en-us/iaas/Content/Registry/Tasks/registrypushingimagesu
 
 #### OKE deployment 
 
-Update the missing values in `application/queue-automation.yaml` file and run below command:
+Update the missing values in `application/queue-automation.yaml` file and run the below command:
 
 `kubectl apply -f queue-automation.yaml`
 
@@ -87,7 +87,7 @@ Update the missing values in `application/queue-automation.yaml` file and run be
 * Nothing at this time
 
 ## Contributing
-This project is open source.  Please submit your contributions by forking this repository and submitting a pull request!  Oracle appreciates any contributions that are made by the open source community.
+This project is open source. Please submit your contributions by forking this repository and submitting a pull request! Oracle appreciates any contributions that are made by the open-source community.
 
 ## License
 Copyright (c) 2022 Oracle and/or its affiliates.
