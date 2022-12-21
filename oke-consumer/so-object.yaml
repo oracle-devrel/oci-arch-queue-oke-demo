@@ -1,0 +1,20 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: http-so
+  labels:
+    deploymentName: queue-deployment-so
+spec:
+  pollingInterval: 5 #Interval for polling
+  maxReplicaCount: 75
+  idleReplicaCount: 0 # When idle, scale-in to 0 pods
+  minReplicaCount: 1
+  cooldownPeriod: 120 # Optional. Default: 300 seconds
+  scaleTargetRef:
+    name: queueoke
+  triggers:
+    - type: metrics-api
+      metadata:
+        targetValue: "200"
+        url: "<api gateway url for queue length function>"
+        valueLocation: 'queue.visibleMessages'
