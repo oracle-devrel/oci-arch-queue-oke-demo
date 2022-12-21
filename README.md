@@ -56,6 +56,7 @@ For explicit access is possible to target queue.id and function.id
 ### Automated deployment
 
 Create a stack in ORM, load the project files,  fill-in all required values and run **apply**.
+
 [![Deploy to OCI](https://docs.oracle.com/en-us/iaas/Content/Resources/Images/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/robo-cap/oci-arch-queue-oke-demo/archive/refs/tags/v1.0.zip)
 
 ### Manual deployment
