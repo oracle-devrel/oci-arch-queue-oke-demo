@@ -72,7 +72,7 @@ If is required to manually build the image you can refer to `/application` direc
 
 https://docs.oracle.com/en-us/iaas/Content/Registry/Tasks/registrypushingimagesusingthedockercli.htm
 
-docker push <OCIR_container_image_url>
+`docker push <OCIR_container_image_url>`
 
 #### OKE deployment 
 
