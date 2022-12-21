@@ -52,7 +52,9 @@ TBD
 
 ## Notes/Issues
 
-None
+***<u>TODO:</u>***
+
+* ***<u>Complete the API setup steps above</u>***
 
 ## URLs
 

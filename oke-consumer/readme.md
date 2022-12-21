@@ -4,20 +4,62 @@
 
 ## Introduction
 
-The following document describes how to create the consumer microservice and deploy it ready to use
+The following document describes how to create the consumer microservice and deploy it ready to use.
 
 ### Prerequisites
 
-- Java JDK
-- Oracle OCI SDK
-- Maven
+- [Java JDK 8 or later](https://www.oracle.com/java/technologies/downloads/)
+- [Oracle OCI SDK](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/javasdk.htm)
+- [Maven](https://maven.apache.org/download.cgi)
 - KubeCTL
 
 
 
+#### Making the queue identifiable and accessible
+
+Within the code is a class called *Environment* (*src/main/java/com/demo/consumer/Environment.java*) which declares several constants that capture the OCI Queue OCID, the URL for the OCI Data Plane endpoint, and the attributes necessary for authenticating and authorization to use the service.
+
+These values need to have their defaults replaced with the appropriate values established during the OCI Queue setup.
+
+If the Queue is not configured in the Phoenix region, then the region part of the name needs to be modified to reflect the region being used.
+
+#### Packaging and deploying the consumer
+
+##### Creating the JAR file
+
+blah
+
+##### Creating the container image
+
+blah
+
+##### Pushing the image to the repository
+
+blah
+
+##### Deploying KEDA
+
+blah
+
+##### deploying the container
+
+blah
+
+#### Observing the Consumer running
+
+blah
+
 ## Notes/Issues
 
-None
+**<u>*TODO:*</u>**
+
+* <u>**fix SDK in POM**</u>
+* **<u>check/correct bat and sh file</u>** 
+* **KubeCTL hyperlinked link**
+* **<u>Add to introduction brief explination of</u>**
+  * **<u> how the container is setup e.g. how app starts</u>**
+  * ***What KEDA is - 1 or 2 sentences***
+* <u>**Complete the subsections for *Packaging and deploying the consumer* and *Observing the Consumer running* above includes the command line steps**</u>
 
 ## URLs
 

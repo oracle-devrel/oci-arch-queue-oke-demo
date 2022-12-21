@@ -47,17 +47,30 @@ This section walks through the process of setting up the necessary environment r
 2. With the queue established, you may wish to try using the OCI Console's Queue UI to send and receive. The steps to do this can be found in the OCI Queue UI documentation.
 3. The OCID for the Queue needs to be made available to our applications before they are deployed. Each of the subsidiary readme documents has a section called *setting the queue OCID,* which details how to set the Queue OCID.
 
+
+
+#### Making the queue identifiable and accessible
+
+Within the code is a class called *Environment* (*src/main/java/com/demo/samples/basic/Environment.java*) which declares several constants that capture the OCI Queue OCID, the URL for the OCI Data Plane endpoint, and the attributes necessary for authenticating and authorization to use the service.
+
+These values need to have their defaults replaced with the appropriate values established during the OCI Queue setup.
+
+If the Queue is not configured in the Phoenix region, then the region part of the name needs to be modified to reflect the region being used.
+
 ##### Deployment
 
 With the infrastructure ready, the different components can be deployed and executed. Each of the component readme documents will describe the configuration and deployment steps.
 
 ##### Execution
 
-With the resources deployed. Execution is simply a case of running one of the scripts provided by the [Producer](./local-producer/readme.md).
+With the services deployed and configured along with our [Consumer](./oke-consumer/readme.md) and [Queue Depth function](./queue-length-function/readme.md). Execution is simply a case of running one of the scripts provided by the [Producer](./local-producer/readme.md).
 
 ## Notes/Issues
 
-None
+***TODO:***
+
+* ***extend the execution section above to describe how to observe the scaling and logs most simply.***
+* ***Add links to any tools needed***
 
 ## URLs
 * These will be unique to the deployment

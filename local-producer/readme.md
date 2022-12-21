@@ -4,7 +4,7 @@
 
 ## Introduction
 
-The following document describes how to create the provider application. This application generates a pushes the content into the queue. It is designed to be run anywhere (local desktop or VM, for example).
+The following document describes how to create the provider application in the demo. This application generates a pushes the content into the queue. It is designed to be run anywhere (local desktop or VM, for example).
 
 ## Getting Started
 
@@ -26,7 +26,7 @@ Maven and Java are assumed to be visible using the PATH environment variable.
 
 #### Making the queue identifiable and accessible
 
-Within the code is a class called *Environment* (*src/main/java/com/demo/samples/basic/Environment.java*) which declares several constants that capture the OCI Queue OCID, the URL for the OCI Data Plane endpoint, and the attributes necessary for authenticating and authorization to use the service A
+Within the code is a class called *Environment* (*src/main/java/com/demo/samples/basic/Environment.java*) which declares several constants that capture the OCI Queue OCID, the URL for the OCI Data Plane endpoint, and the attributes necessary for authenticating and authorization to use the service.
 
 These values need to have their defaults replaced with the appropriate values established during the OCI Queue setup.
 
@@ -34,7 +34,10 @@ If the Queue is not configured in the Phoenix region, then the region part of th
 
 ## Notes/Issues
 
-None
+***<u>TODO</u>:***
+
+* <u>**fix SDK in POM**</u>
+* **<u>check/correct bat and sh file</u>** 
 
 ## URLs
 
