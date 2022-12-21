@@ -61,15 +61,15 @@ resource "oci_devops_deploy_stage" "test_deploy_stage" {
   defined_tags                            = { "${oci_identity_tag_namespace.ArchitectureCenterTagNamespace.name}.${oci_identity_tag.ArchitectureCenterTag.name}" = var.release }
 }
 
-/*
-resource "oci_devops_deployment" "test_deployment1" {
-  count      = var.execute_deployment ? 1 : 0
-  depends_on = [oci_devops_deploy_stage.test_deploy_stage]
-  #Required
-  deploy_pipeline_id = oci_devops_deploy_pipeline.test_deploy_pipeline.id
-  deployment_type    = "PIPELINE_DEPLOYMENT"
 
-  #Optional
-  display_name = "devopsdeployment_${random_id.tag.hex}"
-}
-*/
+# resource "oci_devops_deployment" "test_deployment1" {
+#   count      = var.execute_deployment ? 1 : 0
+#   depends_on = [oci_devops_deploy_stage.test_deploy_stage]
+#   #Required
+#   deploy_pipeline_id = oci_devops_deploy_pipeline.test_deploy_pipeline.id
+#   deployment_type    = "PIPELINE_DEPLOYMENT"
+
+#   #Optional
+#   display_name = "devopsdeployment_${random_id.tag.hex}"
+# }
+
