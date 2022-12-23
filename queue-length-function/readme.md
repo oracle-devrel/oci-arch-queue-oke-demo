@@ -52,7 +52,7 @@ As the Function runs within the OCI environment, we don't need to provide authen
 These values can be set once the Function is deployed with the following command:
 
 ```
-fn config function <app-name> <function-name> DP_ENDPOINT <Your deployment URL for the Queue>
+fn config function <app-name> <function-name> DP_ENDPOINT <Your data plane URL for the Queue>
 fn config function <app-name> <function-name> QUEUE_ID <Your Queue's OCID>
 ```
 Or you can use OCI console as well to add/update environment variables.
