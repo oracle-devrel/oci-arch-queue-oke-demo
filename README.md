@@ -11,9 +11,10 @@ An overview video and demo video is available [here](https://youtu.be/4RMA_EMjyf
 
 This document walks through the build and deployment necessary to configure the demo. Each part of the demo has a readme file explaining how to build and deploy the components in the demo. Which can be found at:
 
-- [Consumer](./oke-consumer/readme.md)
 - [Producer](./local-producer/readme.md)
 - [Queue Depth function](./queue-length-function/readme.md)
+- [Consumer](./oke-consumer/readme.md)
+
 
 Please follow steps provided in this document as well as readme of individual components so that you can run this demo in your tenancy.
 The core of this document focuses on creating the environment and then running the demo.
