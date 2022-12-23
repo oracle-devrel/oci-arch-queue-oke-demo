@@ -3,7 +3,7 @@
 [![License: UPL](https://img.shields.io/badge/license-UPL-green)](https://img.shields.io/badge/license-UPL-green) [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=oracle-devrel_oci-arch-queue-oke-demo)](https://sonarcloud.io/dashboard?id=oracle-devrel_oci-arch-queue-oke-demo)
 
 ## Introduction
-This repository contains the code and instructions to create and run an OCI Queue demo that runs a consumer that can autoscale on Oracle Kubernetes Engine (OKE), a demo producer which you can run anywhere(Local Desktop/Virutal Machine), and an OCI Function that prvoides queue depth for  the autoscaling of queue consumers with KEDA.
+This repository contains the code and instructions to create and run an OCI Queue demo that runs a consumer that can autoscale on Oracle Kubernetes Engine (OKE), a demo producer which you can run anywhere(Local Desktop/Virtual Machine), and an OCI Function that prvoides queue depth for  the autoscaling of queue consumers with KEDA.
 
 An overview video and demo video is available [here](https://youtu.be/4RMA_EMjyfo).
 
