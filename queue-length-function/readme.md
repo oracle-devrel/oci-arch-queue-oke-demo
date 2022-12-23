@@ -79,7 +79,7 @@ None
 ## URLs
 
 * These will be unique to the deployment, 
-* Note the URL of the API gateway for function has to be updated in *queue-oke.yaml* file of the *oke-consumer* folder .
+* Note the URL of the API gateway for function has to be updated in *so-object.yaml * file of the *oke-consumer* folder .
 
 ## Contributing
 
