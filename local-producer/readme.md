@@ -33,30 +33,32 @@ These values need to have their defaults replaced with the appropriate values es
 If the Queue is not configured in the Phoenix region, then the region part of the name(for the data plane URL) needs to be modified to reflect the region being used.
 
 #### <u>Creating the JAR file</u>
-Once you update *Enviornment.java* then you have to build your project .
-This is a maven based project we can use standard maven command like below 
-> *mvn clean package*
-Once command is executed successfully it will create jar file in ./target folder.
-Post successful execution of above command you can run .bat/.sh file to see producer/getStat in action.
+
+Once you update *Enviornment.java* , then you have to build your project.
+This is a maven-based project we can use standard maven commands like this:
+
+`*mvn clean package*`
+Once the command is executed successfully, it will create a jar file in *./target* folder.
+Post successful execution of the above command, you can run *.bat/.sh* file to see producer/getStat in action.
+
 ### Dynamic Group and Policies
-  
-
-We are going to use instance principal(assuming we are running it on OCI instance) so we have to create a dynamic group , e.g. dyanmic group name is *queue_dg*
->ALL {instance.compartment.id='<instance Compartment id>'}
-please use below policies 
-> allow dynamic-group queue_dg to use queues in compartment <queue_parent_compartment>
 
 
-Above policies and dynamic group are needed when using instance principal(when you are hosting and running it from OCI virtual machine) , if you are planning to run it locally(on laptop/desktop) then you will have to generate API keys and ensure you have access to queue service using a group ,e.g. 
-> Allow group \<user group name\> to use queues in compartment \<compartment name of queue parent compartment\>
+We are going to use instance principal (assuming we are running it on OCI instance), so we have to create a dynamic group, e.g., dynamic group name should be *queue_dg* . We can use the following commands (remember to replace the <values> with your own actual values):
+
+`ALL {instance.compartment.id='<instance Compartment id>'}`
+please use the following policy
+`allow dynamic-group queue_dg to use queues in compartment <queue_parent_compartment>`
+
+
+The above policies and dynamic group are needed when using instance principal(when you are hosting and running it from OCI virtual machine), if you are planning to run it locally(on a laptop/desktop), then you will have to generate API keys and ensure you have access to queue service using a grou ,e.g. 
+
+`Allow group \<user group name\> to use queues in compartment \<compartment name of queue parent compartment\>`
 
 
 ## Notes/Issues
 
-***<u>TODO</u>:***
-
-* <u>**fix SDK in POM**</u>
-* **<u>check/correct bat and sh file</u>** 
+None
 
 ## URLs
 

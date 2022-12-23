@@ -8,7 +8,7 @@ The following document describes creating and deploying the serverless Function 
 
 ## Getting Started
 
-To deploy this function please ensure you are setting up application , vcn etc. Please check getting  started guide for function here [Getting Started with Functions](https://docs.oracle.com/en-us/iaas/developer-tutorials/tutorials/functions/func-setup-cs/01-summary.htm)
+To deploy this function, please ensure you are setting up the application , vcn, etc. Please check the getting  started guide for function here [Getting Started with Functions](https://docs.oracle.com/en-us/iaas/developer-tutorials/tutorials/functions/func-setup-cs/01-summary.htm)
 
 ### Prerequisites
 
@@ -22,25 +22,29 @@ To deploy this function please ensure you are setting up application , vcn etc. 
 
 #### Building the Function
 
-This is a java function so you can run mvn command to build it .
-> *mvn clean package*
+This is a java function, so you can run the Maven command to build it .
+
+`mvn clean package`
 
 ### Dynamic Group and Policies
-  
+
 
 We are going to use resource principle so we have to create a dynamic group , e.g. dyanmic group name is *queue_dg*
->ALL {resource.type = 'fnfunc', resource.compartment.id = '<function/application compartment id>'}
 
-please use below policy so that function can invoke queue APIs 
-> allow dynamic-group queue_dg to use queues in compartment <queue_parent_compartment>
+`ALL {resource.type = 'fnfunc', resource.compartment.id = '<function/application compartment id>'}`
+
+please use the following policy so that function can invoke queue APIs 
+
+`allow dynamic-group queue_dg to use queues in compartment <queue_parent_compartment>`
 
 
 ### <u>Packaging and deploying the consumer</u>
 
 #### Deploying the Function
 
-To deploy the function , please execute following command 
-> *fn -v deploy --app \<your application name\>*
+To deploy the function, please execute the following command:
+
+`fn -v deploy --app \<your application name\>`
 
 #### Making the queue identifiable and accessible
 
@@ -61,22 +65,21 @@ You can read more about this in the Functions documentation about [configuring f
 
 #### Exposing the function via the API Gateway
 
-Function is exposed using API gateway , please use following link to expose it using API gateway [Expose Function using API Gateway](https://docs.oracle.com/en-us/iaas/Content/APIGateway/Tasks/apigatewayusingfunctionsbackend.htm)
+The function is exposed using the API gateway we created, please use the following link to expose it using API gateway [Expose Function using API Gateway](https://docs.oracle.com/en-us/iaas/Content/APIGateway/Tasks/apigatewayusingfunctionsbackend.htm)
 
-An example deployment with route will look like below 
+An example deployment with a route will look like this:
 
 ![](../images/api-config.png)
 
-Once you are done with API gateway setup, please use this URL to update consumer *so-object.yaml* file so that it can get queue depth and scale accordingly.
+Once you are done with the API gateway setup, please use this URL to update the consumer *so-object.yaml* file so that it can get queue depth and scale accordingly.
 ## Notes/Issues
 
-***<u>TODO:</u>***
-
-* ***<u>Complete the API setup steps above</u>***
+None
 
 ## URLs
 
-* These will be unique to the deployment , URL of API gateway for function has to be updated in *queue-oke.yaml* file of *oke-consumer* folder .
+* These will be unique to the deployment, 
+* Note the URL of the API gateway for function has to be updated in *queue-oke.yaml* file of the *oke-consumer* folder .
 
 ## Contributing
 
