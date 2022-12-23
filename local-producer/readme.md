@@ -32,6 +32,27 @@ These values need to have their defaults replaced with the appropriate values es
 
 If the Queue is not configured in the Phoenix region, then the region part of the name needs to be modified to reflect the region being used.
 
+### Dynamic Group and Policies
+  
+
+We are going to use instance principle so we have to create a dynamic group , e.g. dyanmic group name is *queue_dg*
+>ALL {instance.compartment.id='<OKE Cluster Compartment id>'}
+please use below policies 
+> allow dynamic-group queue_dg to use queues in compartment <queue_parent_compartment>
+
+> allow dynamic-group queue_dg to use fn-invocation in compartment <function_parent_compartment>
+
+Above policies and dynamic group are needed when using instance principal , if you are planning to run it locally then you will have to generate API keys and ensure you have access to queue service using a group ,e.g. 
+> Allow group \<user group name\> to manage queues in compartment \<compartment name of queue parent compartment\>
+
+### Making the queue identifiable and accessible
+
+Within the code is a class called *Environment* (*src/main/java/com/demo/samples/basic/Environment.java*) which declares several constants that capture the OCI Queue OCID, the URL for the OCI Data Plane endpoint, and the attributes necessary for authenticating and authorization to use the service.
+
+These values need to have their defaults replaced with the appropriate values established during the OCI Queue setup.
+
+
+
 ## Notes/Issues
 
 ***<u>TODO</u>:***

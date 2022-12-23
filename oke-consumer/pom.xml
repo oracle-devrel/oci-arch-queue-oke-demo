@@ -20,7 +20,7 @@
 		<codegen.generate.waiters>true</codegen.generate.waiters>
 		<codegen.specGenerationType>INTERNAL</codegen.specGenerationType>
 		<dropwizard-bom-version>2.0.23</dropwizard-bom-version>
-		<oci-java-sdk-version>2.28.0</oci-java-sdk-version>
+		<oci-java-sdk-version>2.51.0</oci-java-sdk-version>
 		<bouncycastle-version>1.0.2</bouncycastle-version>
 		<jar.finalName>${queue-samples}</jar.finalName>
 	</properties>
@@ -119,13 +119,9 @@
 		<dependency>
 			<groupId>com.oracle.oci.sdk</groupId>
 			<artifactId>oci-java-sdk-queue</artifactId>
-			<version>2.0.1-preview1-SNAPSHOT</version>
+			<version>${oci-java-sdk-version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.oracle.oci.sdk</groupId>
-			<artifactId>oci-java-sdk-functions</artifactId>
-			<version>2.28.0</version>
-		</dependency>
+	
 		
 		<dependency>
 			<groupId>org.slf4j</groupId>

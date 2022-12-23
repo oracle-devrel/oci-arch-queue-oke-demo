@@ -11,43 +11,81 @@ The following document describes how to create the consumer microservice and dep
 - [Java JDK 8 or later](https://www.oracle.com/java/technologies/downloads/)
 - [Oracle OCI SDK](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/javasdk.htm)
 - [Maven](https://maven.apache.org/download.cgi)
-- KubeCTL
+- [KubeCTL](https://kubernetes.io/docs/tasks/tools/)
+- [Get Docker](https://docs.docker.com/get-docker/)
+- [OKE Cluster](https://docs.oracle.com/en-us/iaas/Content/ContEng/home.htm)
 
 
 
-#### Making the queue identifiable and accessible
+### <u>Making the queue identifiable and accessible</u>
 
-Within the code is a class called *Environment* (*src/main/java/com/demo/consumer/Environment.java*) which declares several constants that capture the OCI Queue OCID, the URL for the OCI Data Plane endpoint, and the attributes necessary for authenticating and authorization to use the service.
+Please ensure you are providing Queue OCID and Queue Data plane url in *queue-oke.yaml* , these are defined as environment variable names *QUEUE_ID* and *DP_ENDPOINT*.
+
+In order to test locally , Within the code is a class called *Environment* (*src/main/java/com/demo/consumer/Environment.java*) which declares several constants that capture the OCI Queue OCID, the URL for the OCI Data Plane endpoint, and the attributes necessary for authenticating and authorization to use the service. This can be used to test in standalone fashion queue service as well from your IDE.
 
 These values need to have their defaults replaced with the appropriate values established during the OCI Queue setup.
 
 If the Queue is not configured in the Phoenix region, then the region part of the name needs to be modified to reflect the region being used.
 
-#### Packaging and deploying the consumer
+### Dynamic Group and Policies
+  
 
-##### Creating the JAR file
+We are going to use instance principle so we have to create a dynamic group , e.g. dyanmic group name is *queue_dg*
+>ALL {instance.compartment.id='<OKE Cluster Compartment id>'}
+please use below policies 
+> allow dynamic-group queue_dg to use queues in compartment <queue_parent_compartment>
 
-blah
+> allow dynamic-group queue_dg to use fn-invocation in compartment <function_parent_compartment>
+### <u>Packaging and deploying the consumer</u>
 
-##### Creating the container image
+#### <u>Creating the JAR file</u>
 
-blah
+This is maven based project we can use standard maven command like below 
+> *mvn clean package*
 
-##### Pushing the image to the repository
+This will produce a jar file in *target* folder.
+#### Creating the container image
 
-blah
+The next step is to create  container image which can be done in following way , you have to be in root directory of the consumer code.
+> *docker build -t queueoke .*
 
-##### Deploying KEDA
+This will create container image in your local .
 
-blah
+#### Pushing the image to the repository
 
-##### deploying the container
+The next step is to push it to remote docker repo , following is the command for that 
+> *docker push \<region-name\>.ocir.io/\<tenancy name\>/queueoke:latest*
 
-blah
+Please check following link for creating and configuring OCI container registry.
+[OCI Container Repo](https://docs.oracle.com/en-us/iaas/Content/Registry/Concepts/registryoverview.htm)
 
-#### Observing the Consumer running
+#### Deploying KEDA
 
-blah
+KEDA stands for Kubernetes Event-driven Autoscaling , please check following link to know more about KEDA and how to deploy it in Kubernetes cluster.
+
+[KEDA](https://keda.sh/)
+
+#### deploying the container
+
+To deploy your consumer image in OKE cluster , you will have to execute following command 
+> *kubectl create secret docker-registry queueoke-secret --docker-server='\<repo name\>' --docker-username='\<user name\>' --docker-password='\<password\>' --docker-email=\<email id\>*
+
+The secret will be used by OKE to pull image from container registry.
+
+Next step is to create Scaled object which can be created using _so-object.yaml_ file . We can use following command .
+>  _kubectl apply -f so-object.yaml_
+
+As we have created Secret and Scaled object now we have to create our deployment which can be created using following command below
+> _kubectl apply -f queue-oke.yaml_
+
+Please ensure you have provide value of *DP_ENDPOINT* and *QUEUE_ID* in *queue-oke.yaml* before running above command. This will ensure our consumer is up and running.
+#### <u>Observing the Consumer running</u>
+
+In order to check if all resources are created , you can use following command (assuming it is created in default namespace)
+> *k get all -n default*
+
+However we will not be able to see any pods as there are not any visible messages in the queue , in order to view consumer pods you can send test messages from queue console , please check link below for sending test message from queue console(Check Using the Console section on given hyperlink).
+[Send Test Message to Queue](https://docs.oracle.com/en-us/iaas/Content/queue/publish-messages.htm#example-manage)
 
 ## Notes/Issues
 

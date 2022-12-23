@@ -2,7 +2,7 @@ package com.demo.samples.basic;
 
 public class Environment {
 
-	// Data Plane API's endpoints for PHX
+	// Data Plane API's endpoints for PHX, please replace it for other regions
 	
 	public static String _DP_ENDPOINT = "https://cell-1.queue.messaging.us-phoenix-1.oci.oraclecloud.com";
 

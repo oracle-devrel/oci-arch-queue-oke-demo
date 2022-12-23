@@ -8,7 +8,7 @@ The following document describes creating and deploying the serverless Function 
 
 ## Getting Started
 
-MISSING
+To deploy this function please ensure you are setting up application , vcn etc. Please check getting  started guide for function here [Getting Started with Functions](https://docs.oracle.com/en-us/iaas/developer-tutorials/tutorials/functions/func-setup-cs/01-summary.htm)
 
 ### Prerequisites
 
@@ -22,11 +22,25 @@ MISSING
 
 #### Building the Function
 
-TBD
+This is a java function so you can run mvn command to build it .
+> *mvn clean package*
+
+### Dynamic Group and Policies
+  
+
+We are going to use resource principle so we have to create a dynamic group , e.g. dyanmic group name is *queue_dg*
+>ALL {resource.type = 'fnfunc', resource.compartment.id = '<function/application compartment id>'}
+
+please use below policy so that function can invoke queue APIs 
+> allow dynamic-group queue_dg to use queues in compartment <queue_parent_compartment>
+
+
+### <u>Packaging and deploying the consumer</u>
 
 #### Deploying the Function
 
-TBD
+To deploy the function , please execute following command 
+> *fn -v deploy --app <your application name>*
 
 #### Making the queue identifiable and accessible
 
@@ -41,14 +55,19 @@ These values can be set once the Function is deployed with the following command
 fn config function <app-name> <function-name> DP_ENDPOINT <Your deployment URL for the Queue>
 fn config function <app-name> <function-name> QUEUE_ID <Your Queue's OCID>
 ```
-
+Or you can use OCI console as well to add/update environment variables.
 You can read more about this in the Functions documentation about [configuring functions](https://docs.oracle.com/en-us/iaas/Content/Functions/Tasks/functionspassingconfigparams.htm).
 
 If the Queue is not configured in the Phoenix region, then the region part of the name needs to be modified to reflect the region being used.
 
 #### Exposing the function via the API Gateway
 
-TBD
+Function is exposed using API gateway , please use following link to expose it using API gateway [Expose Function using API Gateway](https://docs.oracle.com/en-us/iaas/Content/APIGateway/Tasks/apigatewayusingfunctionsbackend.htm)
+
+An example deployment with route will look like below 
+
+![](../images/api-config.png)
+
 
 ## Notes/Issues
 
@@ -58,7 +77,7 @@ TBD
 
 ## URLs
 
-* These will be unique to the deployment
+* These will be unique to the deployment , URL of API gateway for function has to be updated in *queue-oke.yaml* file of *oke-consumer* folder .
 
 ## Contributing
 

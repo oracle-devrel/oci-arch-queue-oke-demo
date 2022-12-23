@@ -1,2 +1,1 @@
-export queue_profile=LOCAL
-mvn --quiet exec:java -Dexec.mainClass=com.demo.samples.basic.QueueProducer
+java -cp "queue-samples-jar-with-dependencies.jar" com.demo.samples.basic.QueueProducer

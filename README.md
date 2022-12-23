@@ -28,18 +28,18 @@ This section walks through the process of setting up the necessary environment r
   - OCI Queue
   - Kubernetes Engine
   - Network
-  - Internet gateway
+  - API gateway
   - Container Registry
-  - Resource Manager
+  - Resource Manager  
 
 ### Build
 
 ##### Foundation
 
 1. Within OCI we need to have a compartment to work with. The guidance for creating a compartment can be found [here](https://docs.oracle.com/en/cloud/paas/integration-cloud/oracle-integration-oci/creating-oci-compartment.html).
-2. Get the user token, fingerprint, and related attributes needed by the OCI API to enable the application to communicate using the SDK. The details on how to do this can be found [here](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm). You may wish to use different users for the provider and consumer utilities.
-3. Note which region we're going to deploy to. If it is not Phoenix, then some additional changes will be needed.
-4. Follow the instructions for the architecture [terraform-oci-arch-microservices-oke](https://github.com/oracle-devrel/terraform-oci-arch-microservice-oke) (ideally using the 1-click deploy button). Once this has been completed, the URL for the Repository (OCIR) and OKE will be needed.
+2. Get the user token, fingerprint, and related attributes needed by the OCI API to enable the application to communicate using the SDK. The details on how to do this can be found [here](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm). You may wish to use different users for the provider and consumer utilities. This is needed only if you are using User principal and running it locally, if you are using OCI services (Instance/Function/OKE) then you don't need to generate all of it.
+
+3. Follow the instructions for the architecture [terraform-oci-arch-microservices-oke](https://github.com/oracle-devrel/terraform-oci-arch-microservice-oke) (ideally using the 1-click deploy button). Once this has been completed, the URL for the Repository (OCIR) and OKE will be needed.
 
 ##### Creating the Queue
 
@@ -49,13 +49,7 @@ This section walks through the process of setting up the necessary environment r
 
 
 
-#### Making the queue identifiable and accessible
 
-Within the code is a class called *Environment* (*src/main/java/com/demo/samples/basic/Environment.java*) which declares several constants that capture the OCI Queue OCID, the URL for the OCI Data Plane endpoint, and the attributes necessary for authenticating and authorization to use the service.
-
-These values need to have their defaults replaced with the appropriate values established during the OCI Queue setup.
-
-If the Queue is not configured in the Phoenix region, then the region part of the name needs to be modified to reflect the region being used.
 
 ##### Deployment
 
