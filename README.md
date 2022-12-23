@@ -43,7 +43,8 @@ This section walks through the process of setting up the necessary environment r
 
 ##### Creating the Queue
 
-1. Within the compartment, we need to create the queue and ensure that the applications know about it through its OCID. The steps for creating a queue can be followed in the OCI Queue documentation.
+1. Within the compartment, we need to create the queue and ensure that the applications know about it through its OCID. The steps for creating a queue can be followed in the OCI Queue documentation.<a href="https://docs.oracle.com/en-us/iaas/Content/queue/queue-create.htm" target="_blank">Creating OCI Queue</a>
+
 2. With the queue established, you may wish to try using the OCI Console's Queue UI to send and receive. The steps to do this can be found in the OCI Queue UI documentation.
 3. The OCID for the Queue needs to be made available to our applications before they are deployed. Each of the subsidiary readme documents has a section called *setting the queue OCID,* which details how to set the Queue OCID.
 
