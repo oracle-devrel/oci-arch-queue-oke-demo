@@ -69,7 +69,7 @@ KEDA stands for Kubernetes Event-driven Autoscaling , please check following lin
 
 #### Deploying the Consumer
 
-To deploy your consumer image in OKE cluster , you will have to execute following command 
+To deploy your consumer image in OKE cluster , you will have to execute following command . ( More Details here [Create a Secret](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-secret-by-providing-credentials-on-the-command-line))
 > *kubectl create secret docker-registry queueoke-secret --docker-server='\<repo name\>' --docker-username='\<user name\>' --docker-password='\<password\>' --docker-email=\<email id\>*
 
 The secret will be used by OKE to pull image from container registry.
@@ -80,13 +80,13 @@ Next step is to create Scaled object which can be created using _so-object.yaml_
 As we have created Secret and Scaled object now we have to create our deployment which can be created using following command below
 > _kubectl apply -f queue-oke.yaml_
 
-Please ensure you have provide value of *DP_ENDPOINT* and *QUEUE_ID* in *queue-oke.yaml* before running above command. This will ensure our consumer is up and running.
+Please ensure you have provided value of *DP_ENDPOINT* and *QUEUE_ID* in *queue-oke.yaml* before running above command. This will ensure our consumer is up and running.
 #### <u>Observing the Consumer running</u>
 
 In order to check if all resources are created , you can use following command (assuming it is created in default namespace)
 > *k get all -n default*
 
-However we will not be able to see any pods as there are not any visible messages in the queue , in order to view consumer pods you can send test messages from queue console , please check link below for sending test message from queue console(Check Using the Console section on given hyperlink).
+However we will not be able to see any pods as there are not any visible messages in the queue , in order to view consumer pods you can send test messages from queue console or you can run producer component as well, please check link below for sending test message from queue console(Check Using the Console section on given hyperlink).
 [Send Test Message to Queue](https://docs.oracle.com/en-us/iaas/Content/queue/publish-messages.htm#example-manage)
 
 ## Notes/Issues
