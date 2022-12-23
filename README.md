@@ -15,6 +15,7 @@ This document walks through the build and deployment necessary to configure the 
 - [Producer](./local-producer/readme.md)
 - [Queue Depth function](./queue-length-function/readme.md)
 
+Please follow steps provided in this document as well as readme of individual components so that you can run this demo in your tenancy.
 The core of this document focuses on creating the environment and then running the demo.
 
 ## Getting Started
@@ -30,14 +31,14 @@ The core of this document focuses on creating the environment and then running t
   - Network
   - API gateway
   - Container Registry
-  - Resource Manager  
+  - VCN    
 
 ### Build
 
 ##### Foundation
 
 1. Within OCI we need to have a compartment to work with. The guidance for creating a compartment can be found [here](https://docs.oracle.com/en/cloud/paas/integration-cloud/oracle-integration-oci/creating-oci-compartment.html).
-2. Get the user token, fingerprint, and related attributes needed by the OCI API to enable the application to communicate using the SDK. The details on how to do this can be found [here](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm). You may wish to use different users for the provider and consumer utilities. This is needed only if you are using User principal and running it locally, if you are using OCI services (Instance/Function/OKE) then you don't need to generate all of it. We are going to use instace pricipal and resource principal while running our code base with OCI managed services.
+2. Get the user token, fingerprint, and related attributes needed by the OCI API to enable the application to communicate using the SDK. The details on how to do this can be found [here](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm). You may wish to use different users for the provider and consumer utilities. This is needed only if you are using User principal and running it locally, if you are using OCI services (Instance/Function/OKE) then you don't need to generate all of it. We are going to use instnace principal and resource principal while running our code base with OCI managed services.
 
 
 ##### Creating the Queue
