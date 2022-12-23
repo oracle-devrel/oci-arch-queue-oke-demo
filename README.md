@@ -3,7 +3,7 @@
 [![License: UPL](https://img.shields.io/badge/license-UPL-green)](https://img.shields.io/badge/license-UPL-green) [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=oracle-devrel_oci-arch-queue-oke-demo)](https://sonarcloud.io/dashboard?id=oracle-devrel_oci-arch-queue-oke-demo)
 
 ## Introduction
-This repository contains the code and instructions to create and run an OCI Queue demo that runs a consumer that can autoscale on Oracle Kubernetes Engine (OKE), a demo provider which you can run anywhere, and an OCI Function that controls the autoscaling with KEDA
+This repository contains the code and instructions to create and run an OCI Queue demo that runs a consumer that can autoscale on Oracle Kubernetes Engine (OKE), a demo producer which you can run anywhere(Local Desktop/Virutal Machine), and an OCI Function that prvoides queue depth for  the autoscaling of queue consumers with KEDA.
 
 An overview video and demo video is available [here](https://youtu.be/4RMA_EMjyfo).
 
@@ -37,7 +37,7 @@ This section walks through the process of setting up the necessary environment r
 ##### Foundation
 
 1. Within OCI we need to have a compartment to work with. The guidance for creating a compartment can be found [here](https://docs.oracle.com/en/cloud/paas/integration-cloud/oracle-integration-oci/creating-oci-compartment.html).
-2. Get the user token, fingerprint, and related attributes needed by the OCI API to enable the application to communicate using the SDK. The details on how to do this can be found [here](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm). You may wish to use different users for the provider and consumer utilities. This is needed only if you are using User principal and running it locally, if you are using OCI services (Instance/Function/OKE) then you don't need to generate all of it.
+2. Get the user token, fingerprint, and related attributes needed by the OCI API to enable the application to communicate using the SDK. The details on how to do this can be found [here](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm). You may wish to use different users for the provider and consumer utilities. This is needed only if you are using User principal and running it locally, if you are using OCI services (Instance/Function/OKE) then you don't need to generate all of it. We are going to use instace pricipal and resource principal while running our code base with OCI managed services.
 
 3. Follow the instructions for the architecture [terraform-oci-arch-microservices-oke](https://github.com/oracle-devrel/terraform-oci-arch-microservice-oke) (ideally using the 1-click deploy button). Once this has been completed, the URL for the Repository (OCIR) and OKE will be needed.
 

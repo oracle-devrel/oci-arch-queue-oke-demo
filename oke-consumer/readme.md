@@ -12,7 +12,7 @@ The following document describes how to create the consumer microservice and dep
 - [Oracle OCI SDK](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/javasdk.htm)
 - [Maven](https://maven.apache.org/download.cgi)
 - [KubeCTL](https://kubernetes.io/docs/tasks/tools/)
-- [Get Docker](https://docs.docker.com/get-docker/)
+- [Docker](https://docs.docker.com/get-docker/)
 - [OKE Cluster](https://docs.oracle.com/en-us/iaas/Content/ContEng/home.htm)
 
 
@@ -21,17 +21,18 @@ The following document describes how to create the consumer microservice and dep
 
 Please ensure you are providing Queue OCID and Queue Data plane url in *queue-oke.yaml* , these are defined as environment variable names *QUEUE_ID* and *DP_ENDPOINT*.
 
-In order to test locally , Within the code is a class called *Environment* (*src/main/java/com/demo/consumer/Environment.java*) which declares several constants that capture the OCI Queue OCID, the URL for the OCI Data Plane endpoint, and the attributes necessary for authenticating and authorization to use the service. This can be used to test in standalone fashion queue service as well from your IDE.
+In order to test locally , Within the code is a class called *Environment* (*src/main/java/com/demo/consumer/Environment.java*) which declares several constants that capture the OCI Queue OCID, the URL for the OCI Data Plane endpoint, and the attributes necessary for authenticating and authorization to use the service. This can be used to test in standalone fashion queue service as well as from your IDE.(e.g. writing some queue specific test)
 
 These values need to have their defaults replaced with the appropriate values established during the OCI Queue setup.
 
-If the Queue is not configured in the Phoenix region, then the region part of the name needs to be modified to reflect the region being used.
+If the Queue is not configured in the Phoenix region, then the region part of the name(for the data plane URL) needs to be modified to reflect the region being used.
 
 ### Dynamic Group and Policies
   
 
-We are going to use instance principle so we have to create a dynamic group , e.g. dyanmic group name is *queue_dg*
->ALL {instance.compartment.id='<OKE Cluster Compartment id>'}
+We are going to use instance principle while deploying it on OKE cluster so we have to create a dynamic group , e.g. dyanmic group name is *queue_dg*
+>ALL {instance.compartment.id='\<OKE Cluster Compartment id\>'}
+
 please use below policies 
 > allow dynamic-group queue_dg to use queues in compartment <queue_parent_compartment>
 
@@ -65,7 +66,7 @@ KEDA stands for Kubernetes Event-driven Autoscaling , please check following lin
 
 [KEDA](https://keda.sh/)
 
-#### deploying the container
+#### Deploying the Consumer
 
 To deploy your consumer image in OKE cluster , you will have to execute following command 
 > *kubectl create secret docker-registry queueoke-secret --docker-server='\<repo name\>' --docker-username='\<user name\>' --docker-password='\<password\>' --docker-email=\<email id\>*

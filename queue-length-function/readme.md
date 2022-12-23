@@ -40,7 +40,7 @@ please use below policy so that function can invoke queue APIs
 #### Deploying the Function
 
 To deploy the function , please execute following command 
-> *fn -v deploy --app <your application name>*
+> *fn -v deploy --app \<your application name\>*
 
 #### Making the queue identifiable and accessible
 
@@ -58,7 +58,6 @@ fn config function <app-name> <function-name> QUEUE_ID <Your Queue's OCID>
 Or you can use OCI console as well to add/update environment variables.
 You can read more about this in the Functions documentation about [configuring functions](https://docs.oracle.com/en-us/iaas/Content/Functions/Tasks/functionspassingconfigparams.htm).
 
-If the Queue is not configured in the Phoenix region, then the region part of the name needs to be modified to reflect the region being used.
 
 #### Exposing the function via the API Gateway
 
@@ -68,7 +67,7 @@ An example deployment with route will look like below
 
 ![](../images/api-config.png)
 
-
+Once you are done with API gateway setup, please use this URL to update consumer *so-object.yaml* file so that it can get queue depth and scale accordingly.
 ## Notes/Issues
 
 ***<u>TODO:</u>***

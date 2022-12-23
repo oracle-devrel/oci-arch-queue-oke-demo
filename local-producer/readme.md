@@ -30,20 +30,24 @@ Within the code is a class called *Environment* (*src/main/java/com/demo/samples
 
 These values need to have their defaults replaced with the appropriate values established during the OCI Queue setup.
 
-If the Queue is not configured in the Phoenix region, then the region part of the name needs to be modified to reflect the region being used.
+If the Queue is not configured in the Phoenix region, then the region part of the name(for the data plane URL) needs to be modified to reflect the region being used.
+
+#### <u>Creating the JAR file</u>
+Once you update *Enviornment.java* then you have to build your project .
+This is a maven based project we can use standard maven command like below 
+> *mvn clean package*
 
 ### Dynamic Group and Policies
   
 
-We are going to use instance principle so we have to create a dynamic group , e.g. dyanmic group name is *queue_dg*
->ALL {instance.compartment.id='<OKE Cluster Compartment id>'}
+We are going to use instance principal(assuming we are running it on OCI instance) so we have to create a dynamic group , e.g. dyanmic group name is *queue_dg*
+>ALL {instance.compartment.id='<instance Compartment id>'}
 please use below policies 
 > allow dynamic-group queue_dg to use queues in compartment <queue_parent_compartment>
 
-> allow dynamic-group queue_dg to use fn-invocation in compartment <function_parent_compartment>
 
-Above policies and dynamic group are needed when using instance principal , if you are planning to run it locally then you will have to generate API keys and ensure you have access to queue service using a group ,e.g. 
-> Allow group \<user group name\> to manage queues in compartment \<compartment name of queue parent compartment\>
+Above policies and dynamic group are needed when using instance principal , if you are planning to run it locally(on laptop/desktop) then you will have to generate API keys and ensure you have access to queue service using a group ,e.g. 
+> Allow group \<user group name\> to use queues in compartment \<compartment name of queue parent compartment\>
 
 ### Making the queue identifiable and accessible
 
