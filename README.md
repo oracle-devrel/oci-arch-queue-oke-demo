@@ -39,7 +39,6 @@ This section walks through the process of setting up the necessary environment r
 1. Within OCI we need to have a compartment to work with. The guidance for creating a compartment can be found [here](https://docs.oracle.com/en/cloud/paas/integration-cloud/oracle-integration-oci/creating-oci-compartment.html).
 2. Get the user token, fingerprint, and related attributes needed by the OCI API to enable the application to communicate using the SDK. The details on how to do this can be found [here](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm). You may wish to use different users for the provider and consumer utilities. This is needed only if you are using User principal and running it locally, if you are using OCI services (Instance/Function/OKE) then you don't need to generate all of it. We are going to use instace pricipal and resource principal while running our code base with OCI managed services.
 
-3. Follow the instructions for the architecture [terraform-oci-arch-microservices-oke](https://github.com/oracle-devrel/terraform-oci-arch-microservice-oke) (ideally using the 1-click deploy button). Once this has been completed, the URL for the Repository (OCIR) and OKE will be needed.
 
 ##### Creating the Queue
 
