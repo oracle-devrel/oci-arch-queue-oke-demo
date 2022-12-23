@@ -44,7 +44,7 @@ please use the following policy so that function can invoke queue APIs
 
 To deploy the function, please execute the following command:
 
-`fn -v deploy --app \<your application name\>`
+`fn -v deploy --app <your application name>`
 
 #### Making the queue identifiable and accessible
 
