@@ -19,7 +19,7 @@ The core of this document focuses on creating the environment and then running t
 
 ## Getting Started
 
-This section walks through the process of setting up the necessary environment ready to be used.  To implement this, we will take advantage of a preexisting One-click deployment which will use the Resource Manager to run a Terraform configuration file. Then we'll add to that using the OCI Console to add the remaining elements, such as the Queue, manually so that you get to see the simplicity of configuration.  While working within the OCI Console, we will retrieve a number of details that will need to be added to the configuration of the different resources.  Such as the Queue OCID.
+ We will add our components using OCI Console.  While working within the OCI Console, we will retrieve a number of details that will need to be added to the configuration of the different resources.  Such as the Queue OCID.
 
 ### Prerequisites
 
@@ -53,7 +53,7 @@ This section walks through the process of setting up the necessary environment r
 
 ##### Deployment
 
-With the infrastructure ready, the different components can be deployed and executed. Each of the component readme documents will describe the configuration and deployment steps.
+With the infrastructure ready, the different components can be deployed and executed. Each of the component readme documents will describe the configuration and deployment steps.Each of the component readme.md also talks about setting up components.
 
 ##### Execution
 
