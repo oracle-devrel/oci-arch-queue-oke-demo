@@ -1,10 +1,10 @@
-# oci-arch-queue-oke-demo (provider app)
+# oci-arch-queue-oke-demo (Producer app)
 
 [![License: UPL](https://img.shields.io/badge/license-UPL-green)](https://img.shields.io/badge/license-UPL-green) [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=oracle-devrel_oci-arch-queue-oke-demo)](https://sonarcloud.io/dashboard?id=oracle-devrel_oci-arch-queue-oke-demo)
 
 ## Introduction
 
-The following document describes how to create the provider application in the demo. This application generates a pushes the content into the queue. It is designed to be run anywhere (local desktop or VM, for example).
+The following document describes how to create the Producer application in the demo. This application generates a pushes the content into the queue. It is designed to be run anywhere (local desktop or VM, for example).
 
 ## Getting Started
 
@@ -13,7 +13,7 @@ The folder includes two scripts (provided in Windows (.bat) and Linux bash (.sh)
 - **getStats.[bat|sh]** - this script sets the environment variable to tell the application that the configuration file with the properties necessary is in the same directory as where you run the tool from.  It then uses Maven to create and execute the tool, which will then send to the console details of the test queue.
 - **producer.[bat|sh]** - this script works in the same way as the getStats script by setting the environment variable and then using Maven to compile and execute the utility. The difference being this will then start generating and putting messages in the Queue.
 
-As the Java utility needs to communicate with OCI, it requires the user details to authenticate the user, as mentioned in the overall [readme](../README.md) and explained in the [ SDK documentation](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm). You may wish to use separate users for the provider and consumer.
+As the Java utility needs to communicate with OCI, it requires the user details to authenticate the user, as mentioned in the overall [readme](../README.md) and explained in the [ SDK documentation](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm). You may wish to use separate users for the producer and consumer.
 
 ### Prerequisites
 
@@ -36,7 +36,8 @@ If the Queue is not configured in the Phoenix region, then the region part of th
 Once you update *Enviornment.java* then you have to build your project .
 This is a maven based project we can use standard maven command like below 
 > *mvn clean package*
-
+Once command is executed successfully it will create jar file in ./target folder.
+Post successful execution of above command you can run .bat/.sh file to see producer/getStat in action.
 ### Dynamic Group and Policies
   
 
@@ -46,15 +47,8 @@ please use below policies
 > allow dynamic-group queue_dg to use queues in compartment <queue_parent_compartment>
 
 
-Above policies and dynamic group are needed when using instance principal , if you are planning to run it locally(on laptop/desktop) then you will have to generate API keys and ensure you have access to queue service using a group ,e.g. 
+Above policies and dynamic group are needed when using instance principal(when you are hosting and running it from OCI virtual machine) , if you are planning to run it locally(on laptop/desktop) then you will have to generate API keys and ensure you have access to queue service using a group ,e.g. 
 > Allow group \<user group name\> to use queues in compartment \<compartment name of queue parent compartment\>
-
-### Making the queue identifiable and accessible
-
-Within the code is a class called *Environment* (*src/main/java/com/demo/samples/basic/Environment.java*) which declares several constants that capture the OCI Queue OCID, the URL for the OCI Data Plane endpoint, and the attributes necessary for authenticating and authorization to use the service.
-
-These values need to have their defaults replaced with the appropriate values established during the OCI Queue setup.
-
 
 
 ## Notes/Issues
