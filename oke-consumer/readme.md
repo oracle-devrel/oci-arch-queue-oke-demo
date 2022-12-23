@@ -13,7 +13,8 @@ The following document describes how to create the consumer microservice and dep
 - [Maven](https://maven.apache.org/download.cgi)
 - [KubeCTL](https://kubernetes.io/docs/tasks/tools/)
 - [Docker](https://docs.docker.com/get-docker/)
-- [OKE Cluster](https://docs.oracle.com/en-us/iaas/Content/ContEng/home.htm)
+- [OKE Cluster](https://docs.oracle.com/en-us/iaas/Content/ContEng/home.htm), please check here to setup OKE Cluster [OKE Cluster Setup](https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengcreatingclusterusingoke_topic-Using_the_Console_to_create_a_Quick_Cluster_with_Default_Settings.htm)
+- [OCI Container Registry](https://docs.oracle.com/en-us/iaas/Content/Registry/home.htm) , please check here about setting up OCI Container registry. [OCIR Setup](https://docs.oracle.com/en-us/iaas/Content/Registry/Tasks/registrycreatingarepository.htm#Creating_a_Repository)
 
 
 
