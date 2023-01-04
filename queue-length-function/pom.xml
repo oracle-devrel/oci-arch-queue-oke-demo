@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<fdk.version>1.0.149</fdk.version>
+		<dropwizard-bom-version>2.0.23</dropwizard-bom-version>
+		<oci-java-sdk-version>2.51.0</oci-java-sdk-version>
+		<bouncycastle-version>1.0.2</bouncycastle-version>
+	</properties>
+   
+    <groupId>com.example.fn</groupId>
+    <artifactId>queuelength</artifactId>
+    <version>1.0.0</version>
+
+    <dependencies>
+		<dependency>
+			<groupId>com.fnproject.fn</groupId>
+			<artifactId>api</artifactId>
+			<version>${fdk.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fnproject.fn</groupId>
+			<artifactId>testing-core</artifactId>
+			<version>${fdk.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.fnproject.fn</groupId>
+			<artifactId>testing-junit4</artifactId>
+			<version>${fdk.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- Build only dependencies -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>bc-fips</groupId>
+			<artifactId>bc-fips</artifactId>
+			<version>${bouncycastle-version}</version>
+
+		</dependency>
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.11.0</version>
+		</dependency>
+		<dependency>
+			<groupId>bcpkix-fips</groupId>
+			<artifactId>bcpkix-fips</artifactId>
+			<version>${bouncycastle-version}</version>
+
+		</dependency>
+		<!-- Dependency on bmc-common. Version determined in parent pom. -->
+		<dependency>
+			<groupId>com.oracle.oci.sdk</groupId>
+			<artifactId>oci-java-sdk-common</artifactId>
+			<version>${oci-java-sdk-version}</version>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
+            <groupId>com.oracle.oci.sdk</groupId>
+            <artifactId>oci-java-sdk-objectstorage</artifactId>
+           <version>${oci-java-sdk-version}</version> 
+        </dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle.oci.sdk</groupId>
+			<artifactId>oci-java-sdk-queue</artifactId>
+			<version>${oci-java-sdk-version}</version>
+
+		</dependency>
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.7.30</version>
+
+		</dependency>
+
+		<!-- Gson dependency -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.6</version>
+		</dependency>
+
+	</dependencies>
+
+
+    <build>
+        
+        <plugins>
+			
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<finalName>${artifactId}</finalName>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.1</version>
+				<configuration>
+					<useSystemClassLoader>false</useSystemClassLoader>
+				</configuration>
+			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+           
+        </plugins>
+    </build>
+</project>

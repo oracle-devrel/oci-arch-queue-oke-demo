@@ -1,0 +1,1 @@
+java -cp "queue-samples-jar-with-dependencies.jar" com.demo.samples.basic.GetStats

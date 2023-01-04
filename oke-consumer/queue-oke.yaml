@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: queueoke
+  labels:
+    app: queueoke
+spec:
+  selector:
+    matchLabels:
+      app: queueoke
+  template:
+    metadata:
+      labels:
+        app: queueoke
+    spec:
+      containers:
+      - name: queueoke
+        image: #image details
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        env:
+            - name: DP_ENDPOINT
+              value: "<Data plane end point>"
+            - name: QUEUE_ID
+              value: "<queue ocid>"
+      imagePullSecrets:
+      - name: queueoke-secret #check secret.yaml
+        
