@@ -40,12 +40,13 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- Build only dependencies -->
+		<!--
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.18.0</version>
 			<scope>provided</scope>
-		</dependency>
+		</dependency>-->
 
 			<!-- 	<dependency>
 			<groupId>bc-fips</groupId>
