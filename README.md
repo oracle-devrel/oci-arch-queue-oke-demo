@@ -9,49 +9,25 @@ An overview video and demo video is available [here](https://youtu.be/4RMA_EMjyf
 
 ![](images/demo-architecture.png)
 
-This document walks through the build and deployment necessary to configure the demo. Each part of the demo has a readme file explaining how to build and deploy the components in the demo. Which can be found at:
+This document walks through the build and deployment necessary to configure the demo. Pleas check below for more details:
 
+- <a href="https://github.com/oracle-devrel/terraform-oci-arch-queue">Terraforn Repo</a> that can be used to setup the complete solution in your tenancy. As Producer can be executed from your local laptop/ VM instance etc. so it can be done manually after capturing output parameters for Queue OCID and DP endpoint from Resource manager output.
 - [Producer](./local-producer/readme.md)
-- [Queue Depth function](./queue-length-function/readme.md)
-- [Consumer](./oke-consumer/readme.md)
 
-Please follow the steps provided in this document, as well as the readme of individual components, so that you can run this demo in your tenancy.
-The core of this document focuses on creating the environment and then running the demo.
 
 ## Getting Started
 
- We will add our components using OCI Console.  While working within the OCI Console, we will retrieve a number of details that will need to be added to the configuration of the different resources.  Such as the Queue OCID.
 
 ### Prerequisites
 
-- OCI Cloud account
-- OCI Compartment with privileges to manage:
-  - OCI Queue
-  - Kubernetes Engine
-  - Network
-  - API gateway
-  - Container Registry
-  - VCN    
+- Permission to `manage` the following types of resources in your Oracle Cloud Infrastructure tenancy: `vcns`, `internet-gateways`, `route-tables`, `network-security-groups`, `subnets`, `OKE`, `functions` , `api gateway` and `Queue`.
+- Quota to create all of these services  
 
-### Build
 
-##### Foundation
+### Deployment
 
-1. Within OCI we need to have a compartment to work with. The guidance for creating a compartment can be found [here](https://docs.oracle.com/en/cloud/paas/integration-cloud/oracle-integration-oci/creating-oci-compartment.html).
-2. Get the user token, fingerprint, and related attributes needed by the OCI API to enable the application to communicate using the SDK. The details on how to do this can be found [here](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm). You may wish to use different users for the provider and consumer utilities. This is needed only if you are using User principal and running it locally. If you are using OCI services (Instance/Function/OKE) then you don't need to generate all of it. We are going to use instances principal and resource principal while running our code base with OCI-managed services.
-3. We can shortcut setting up Kubernetes (OKE) and the worker nodes using the one-click deploy button provided as part of a prebuilt Terraform library called [terraform-oci-arch-microservice-oke](https://github.com/oracle-devrel/terraform-oci-arch-microservice-oke).
-4. Lastly, we will need a OCI API Gateway deployment within our compartment. The details for creating this are available [here](https://docs.oracle.com/en-us/iaas/Content/APIGateway/Tasks/apigatewayquickstartsetupcreatedeploy.htm).
-
-##### Creating the Queue
-
-1. Within the compartment, we need to create the queue and ensure that the applications know about it through its OCID. The steps for creating a queue can be followed in the OCI Queue documentation.<a href="https://docs.oracle.com/en-us/iaas/Content/queue/queue-create.htm" target="_blank">Creating OCI Queue</a>
-
-2. With the queue established, you may wish to try using the OCI Console's Queue UI to send and receive. The steps to do this can be found in the OCI Queue UI documentation.
-3. The OCID for the Queue needs to be made available to our applications before they are deployed. Each of the subsidiary readme documents has a section called *setting the queue OCID,* which details how to set the Queue OCID.
-
-##### Deployment
-
-With the infrastructure ready, the different components can be deployed and executed. Each of the component readme documents will describe the configuration and deployment steps. Each of the component *readme.md* also talks about setting up components.
+- <a href="https://github.com/oracle-devrel/terraform-oci-arch-queue">Terraforn Repo</a> that can be used to setup the complete solution in your tenancy. As Producer can be executed from your local laptop/ VM instance etc. so it can be done manually after capturing output parameters for Queue OCID and DP endpoint from Resource manager output.
+- [Producer](./local-producer/readme.md)
 
 ##### Execution
 
@@ -59,7 +35,7 @@ With the services deployed and configured along with our [Consumer](./oke-consum
 
 #### Observing queue production and consumption
 
-As observing how the different elements execute is unique to that element, the readme documentation for those elements describes how you can see them work.
+As observing how the different elements execute is unique to that element, the readme documentation for those elements describes how you can see them work. Please check the demo links [here](https://youtu.be/4RMA_EMjyfo) and [here](https://www.youtube.com/watch?v=wC3h9LmKgGY) to get more clarity.
 
 ## Notes/Issues
 
