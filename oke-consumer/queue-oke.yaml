@@ -15,15 +15,17 @@ spec:
     spec:
       containers:
       - name: queueoke
-        image: #image details
+        image: IMAGE_NAME
         imagePullPolicy: Always
         ports:
         - containerPort: 80
         env:
             - name: DP_ENDPOINT
-              value: "<Data plane end point>"
+              value: "${DP_ENDPOINT}"
             - name: QUEUE_ID
-              value: "<queue ocid>"
+              value: "${QUEUE_ID}"
+            
+              
       imagePullSecrets:
       - name: queueoke-secret #check secret.yaml
         

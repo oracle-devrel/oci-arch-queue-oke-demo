@@ -40,31 +40,14 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- Build only dependencies -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.0</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>bc-fips</groupId>
-			<artifactId>bc-fips</artifactId>
-			<version>${bouncycastle-version}</version>
-
-		</dependency>
+	
 
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.11.0</version>
 		</dependency>
-		<dependency>
-			<groupId>bcpkix-fips</groupId>
-			<artifactId>bcpkix-fips</artifactId>
-			<version>${bouncycastle-version}</version>
-
-		</dependency>
+		
 		<!-- Dependency on bmc-common. Version determined in parent pom. -->
 		<dependency>
 			<groupId>com.oracle.oci.sdk</groupId>

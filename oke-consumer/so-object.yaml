@@ -16,5 +16,5 @@ spec:
     - type: metrics-api
       metadata:
         targetValue: "200"
-        url: "<api gateway url for queue length function>"
+        url: API_GATEWAY_URL
         valueLocation: 'queue.visibleMessages'
