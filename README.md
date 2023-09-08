@@ -9,10 +9,10 @@ An overview video and demo video is available [here](https://youtu.be/4RMA_EMjyf
 
 ![](images/demo-architecture.png)
 
-This document walks through the build and deployment necessary to configure the demo. Each part of the demo has a readme file explaining how to build and deploy the components in the demo. Which can be found at:
+This document walks through the build and deployment necessary to configure the demo. Pleas check below for more details:
+
 
 - <a href="https://github.com/oracle-devrel/terraform-oci-arch-queue" target="_blank">Terraforn Repo</a> that can be used to setup the complete solution in your tenancy. As Producer can be executed from your local laptop/ VM instance etc. so it can be done manually after capturing output parameters for Queue OCID and DP endpoint from Resource manager output.
-- [Producer](./local-producer/readme.md)
 
 
 ## Getting Started
@@ -28,12 +28,12 @@ This document walks through the build and deployment necessary to configure the 
 
 #### Deployment using Terraform
 - <a href="https://github.com/oracle-devrel/terraform-oci-arch-queue">Terraforn Repo</a> that can be used to setup the complete solution in your tenancy. As Producer can be executed from your local laptop/ VM instance etc. so it can be done manually after capturing output parameters for Queue OCID and DP endpoint from Resource manager output.
-- [Producer](./local-producer/readme.md)
+
 
 #### Manual Deployment
 
 You can deploy it manually in case if you have resources(e.g. OKE Cluster, Application, API gateway ) provisioned already. Please check invidual README files for manual deployment
-- [Manual Deployment](./README_manual.md)
+
 
 ##### Execution
 
