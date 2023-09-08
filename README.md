@@ -11,8 +11,8 @@ An overview video and demo video is available [here](https://youtu.be/4RMA_EMjyf
 
 This document walks through the build and deployment necessary to configure the demo. Pleas check below for more details:
 
-- <a href="https://github.com/oracle-devrel/terraform-oci-arch-queue">Terraforn Repo</a> that can be used to setup the complete solution in your tenancy. As Producer can be executed from your local laptop/ VM instance etc. so it can be done manually after capturing output parameters for Queue OCID and DP endpoint from Resource manager output.
-- [Producer](./local-producer/readme.md)
+
+- <a href="https://github.com/oracle-devrel/terraform-oci-arch-queue" target="_blank">Terraforn Repo</a> that can be used to setup the complete solution in your tenancy. As Producer can be executed from your local laptop/ VM instance etc. so it can be done manually after capturing output parameters for Queue OCID and DP endpoint from Resource manager output.
 
 
 ## Getting Started
@@ -26,8 +26,14 @@ This document walks through the build and deployment necessary to configure the 
 
 ### Deployment
 
+#### Deployment using Terraform
 - <a href="https://github.com/oracle-devrel/terraform-oci-arch-queue">Terraforn Repo</a> that can be used to setup the complete solution in your tenancy. As Producer can be executed from your local laptop/ VM instance etc. so it can be done manually after capturing output parameters for Queue OCID and DP endpoint from Resource manager output.
-- [Producer](./local-producer/readme.md)
+
+
+#### Manual Deployment
+
+You can deploy it manually in case if you have resources(e.g. OKE Cluster, Application, API gateway ) provisioned already. Please check invidual README files for manual deployment
+
 
 ##### Execution
 
@@ -35,7 +41,7 @@ With the services deployed and configured along with our [Consumer](./oke-consum
 
 #### Observing queue production and consumption
 
-As observing how the different elements execute is unique to that element, the readme documentation for those elements describes how you can see them work. Please check the demo links [here](https://youtu.be/4RMA_EMjyfo) and [here](https://www.youtube.com/watch?v=wC3h9LmKgGY) to get more clarity.
+As observing how the different elements execute is unique to that element, the readme documentation for those elements describes how you can see them work. Please check the demo links [here](https://youtu.be/4RMA_EMjyfo) and [here](https://www.youtube.com/watch?v=wC3h9LmKgGY) to get more detail.
 
 ## Notes/Issues
 
